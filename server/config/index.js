@@ -5,9 +5,9 @@ var config = {
     port: 3001,
 
     mongo: {
-        host: "localhost",
+        host: "mongodb+srv://prasad:513171@cluster0-xjek4.mongodb.net/test?retryWrites=true&w=majority",
         port: 27017,
-        db: "MoviesDB"
+        db: "test"
     },
     EncryptionKey: "TheKey123",
 };
