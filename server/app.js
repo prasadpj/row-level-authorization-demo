@@ -24,6 +24,9 @@ app.use(function (req, res, next) {
 app.listen(config.port, () => console.log('server started at port:' + config.port));
 
 app.use('/api/*', middleware.sessionExist)
+app.get('/testing', (req, res, next) =>{
+    res.send('Good')
+})
 
 app.use('/api/user', require('./api/user/user.api'));
 app.use('/api/movie', require('./api/movie/movie.api'));
