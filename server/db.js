@@ -6,8 +6,10 @@ const config = require('./config/index');
 mongoose.connect(config.mongo.host,{ useNewUrlParser: true }, (err) => {
     if (!err)
         console.log('MongoDB connection succeeded');
-    else
+    else{
         console.log('Error in Connection: ' + JSON.stringify(err, undefined, 2));
+        process.exit(0)
+    }
 });
 
 module.exports = mongoose;

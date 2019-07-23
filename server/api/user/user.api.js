@@ -5,7 +5,7 @@ var Router = Express.Router();
 
 // allow routes only to admin 
 Router.use('/', (req, res, next) => {
-    if (req.user.role.toLowerCase() == "admin")
+    if ((req.user.role || "").toLowerCase() == "admin")
         return next()
     return res.status(400).send(`Unauthorized user!`);
 });

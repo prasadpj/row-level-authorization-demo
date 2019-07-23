@@ -29,15 +29,16 @@ function sessionExist(req, res, next) {
 }
 
 function checkMovieAccessRestriction(req, res, next) {
+    let userRole = (req.user.role || "").toLowerCase()
     if (req.method == "POST") {
-        if (req.user.role.toLowerCase() == "admin")
+        if (userRole == "admin")
             return next()
         return res.status(400).send(`Unauthorized user!`);
     }
     if (req.method == "PUT" || req.method == "DELETE") {
-        if (req.user.role.toLowerCase() == "admin")
+        if (userRole == "admin")
             return next()
-        if (req.user.role.toLowerCase() == "moderator") {
+        if (userRole == "moderator") {
             Movie.find({ _id: req.params.id, isModerator: true }, (err, docs) => {
                 if (docs.length > 0) {
                     req.body = filterReqBody(req.body)
@@ -50,15 +51,15 @@ function checkMovieAccessRestriction(req, res, next) {
         }
     }
     if (req.method == "GET") {
-        if (req.user.role.toLowerCase() == "admin")
+        if (userRole == "admin")
             return next()
-        if (constants.roles.indexOf(req.user.role) == -1) {
+        if (constants.roles.indexOf(userRole) == -1) {
             return res.status(400).send(`Unauthorized user!`);
         }
         if (req.params.id) {
-            let filter = req.user.role.toLowerCase() == "admin" ? {} :
-                (req.user.role.toLowerCase() == "moderator" ? { isModeratorAccess: true } :
-                    (req.user.role.toLowerCase() == "viewer" ? { isViewerAccess: true } : null))
+            let filter = userRole == "admin" ? {} :
+                (userRole == "moderator" ? { isModeratorAccess: true } :
+                    (userRole == "viewer" ? { isViewerAccess: true } : null))
             filter = _.extend({ "isDeleted": { "$eq": false }, "_id": req.params.id }, filter || {})
             Movie.find(filter, (err, docs) => {
                 if (docs.length > 0) {

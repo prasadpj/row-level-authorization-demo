@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 var User = mongoose.model('User', {
-    name: { 
+    name: {
         type: String,
-        required : true
+        required: true
     },
     password: { type: String },
     role: { type: String },
-    emailId: { 
+    emailId: {
         type: String,
-        required : true
+        required: true
     },
-    sessionId : {type : String}
+    sessionId: { type: String }     // for authorization purpose, is set on login and remove on logout
 });
 
 module.exports = { User };

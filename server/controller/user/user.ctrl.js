@@ -54,12 +54,9 @@ function create(req, res, next) {
 function update(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
-    var user = {
-        name: req.body.name,
-        password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.password, "utf-8", "hex"),
-        role: req.body.role,
-        emailId: req.body.emailId,
-    };
+    let user = _.extend({}, req.body)
+    if (user.password)
+        user.password = crypto.createCipher("aes-256-ctr", EncryptionKey).update(user.password, "utf-8", "hex")
     User.findByIdAndUpdate(req.params.id, { $set: user }, { new: true }, (err, doc) => {
         if (!err) { res.send(doc); }
         else { console.log('Error in Update User: ' + JSON.stringify(err, undefined, 2)); }

@@ -21,12 +21,13 @@ module.exports = {
 }
 
 function readAll(req, res, next) {
-    if (constants.roles.indexOf(req.user.role) == -1) {
+    let userRole = (req.user.role || "").toLowerCase();
+    if (constants.roles.indexOf(userRole) == -1) {
         return res.status(400).send(`Unauthorized user!`);
     }
-    let filter = req.user.role.toLowerCase() == "admin" ? {} :
-        (req.user.role.toLowerCase() == "moderator" ? { isModeratorAccess: true } :
-            (req.user.role.toLowerCase() == "viewer" ? { isViewerAccess: true } : null))
+    let filter = userRole == "admin" ? {} :
+        (userRole == "moderator" ? { isModeratorAccess: true } :
+            (userRole == "viewer" ? { isViewerAccess: true } : null))
     filter = _.extend({ "isDeleted": { "$eq": false } }, filter || {})
     Movie.find(filter, (err, docs) => {
         if (!err) { res.send(docs); }

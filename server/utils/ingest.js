@@ -25,7 +25,7 @@ const ingestMovies = () => {
             let mongoObj = new Movie(movie);
             mongoObj.save((err) => {
                 if (err)
-                    console.log("error");
+                    console.log("error ",err);
                 else
                     console.log("inserted");
                 callback();

@@ -517,7 +517,7 @@
 		{
 			"name": "delete user",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "sessionid",
