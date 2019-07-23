@@ -32,6 +32,10 @@ app.get('/logout', authCtrl.logout);
 app.post('/login', authCtrl.login);
 
 /* health check */
-app.get('/healtcheck', (req, res, next) =>{
+app.get('/healtcheck', (req, res, next) => {
     res.send('Good')
+})
+app.use((err, req, res, next) => {
+    console.error(JSON.stringify(err, undefined, 2))
+    res.status(500).send(err)
 })

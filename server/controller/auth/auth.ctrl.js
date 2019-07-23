@@ -25,14 +25,14 @@ function login(req, res, next) {
             }
             User.findByIdAndUpdate(doc._id.toString(), { $set: { sessionId: response.sessionId } }, { new: true }, (err, newDoc) => {
                 if (!err) {
-                    res.send(response);
+                    return res.send(response);
                 } else {
-                    console.log('Error in setting session id: ' + JSON.stringify(err, undefined, 2));
+                    return res.status(400).send('Error in setting session id: ' + JSON.stringify(err, undefined, 2));
                 }
             });
             // res.send(response);
         } else {
-            console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined, 2));
+            return res.status(400).send('Error: ' + JSON.stringify(err, undefined, 2));
         }
     });
 
@@ -44,7 +44,7 @@ function logout(req, res, next) {
         if (!err) {
             res.send("logout sucessfully!");
         } else {
-            console.log('Error in setting session id: ' + JSON.stringify(err, undefined, 2));
+            return res.status(400).send('Error in logout: ' + JSON.stringify(err, undefined, 2));
         }
     });
 }

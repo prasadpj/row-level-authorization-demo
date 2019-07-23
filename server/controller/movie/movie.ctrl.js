@@ -30,8 +30,10 @@ function readAll(req, res, next) {
             (userRole == "viewer" ? { isViewerAccess: true } : null))
     filter = _.extend({ "isDeleted": { "$eq": false } }, filter || {})
     Movie.find(filter, (err, docs) => {
-        if (!err) { res.send(docs); }
-        else { console.log('Error in retriving ClinetRegister: ' + JSON.stringify(err, undefined, 2)); }
+        if (!err)
+            res.send(docs);
+        else
+            next(err)
     });
 }
 function read(req, res, next) {
@@ -39,48 +41,40 @@ function read(req, res, next) {
         return res.status(400).send(`No record with given id: ${req.params.id}`);
 
     Movie.findById(req.params.id, (err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in retriving Movie: ' + JSON.stringify(err, undefined, 2)); }
+        if (!err)
+            return res.send(doc);
+        else
+            next(err)
     });
 }
 
 function create(req, res, next) {
-    var MovieModel = new Movie({
-        name: req.body.name,
-        "99popularity": req.body["99popularity"],
-        director: req.body.director,
-        genre: req.body.genre,
-        imdb_score: req.body.imdb_score,
-        isModeratorAccess: req.body.isModeratorAccess,
-        isViewerAccess: req.body.isViewerAccess,
-    });
+    var MovieModel = new Movie(_.extend({}, req.body));
     MovieModel.save((err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Movie Create: ' + JSON.stringify(err, undefined, 2)); }
+        if (!err)
+            return res.send(doc);
+        else
+            next(err)
     });
 }
 function update(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
-    var movie = {
-        name: req.body.name,
-        ["99popularity"]: req.body["99popularity"],
-        director: req.body.director,
-        genre: req.body.genre,
-        imdb_score: req.body.imdb_score,
-        isModeratorAccess: req.body.isModeratorAccess,
-        isViewerAccess: req.body.isViewerAccess,
-    };
+    var movie = _.extend({}, req.body)
     Movie.findByIdAndUpdate(req.params.id, { $set: movie }, { new: true }, (err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Update Movie: ' + JSON.stringify(err, undefined, 2)); }
+        if (!err)
+            return res.send(doc);
+        else
+            next(err)
     });
 }
 function del(req, res, next) {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id: ${req.params.id}`);
     Movie.findByIdAndUpdate(req.params.id, { $set: { isDeleted: true } }, { new: true }, (err, doc) => {
-        if (!err) { res.send(doc); }
-        else { console.log('Error in Delete Movie: ' + JSON.stringify(err, undefined, 2)); }
+        if (!err)
+            return res.send(doc);
+        else
+            next(err)
     });
 }
