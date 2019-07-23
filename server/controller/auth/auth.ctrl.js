@@ -20,6 +20,8 @@ function login(req, res, next) {
             return res.status(400).send(`Invalid credentials!`);
         }
         if (!err) {
+            if(doc.sessionId)
+                return res.send("You are already logged in!")
             let response = {
                 sessionId: crypto.createCipher("aes-256-ctr", EncryptionKey).update(doc._id.toString(), "utf-8", "hex")
             }
@@ -27,12 +29,11 @@ function login(req, res, next) {
                 if (!err) {
                     return res.send(response);
                 } else {
-                    return res.status(400).send('Error in setting session id: ' + JSON.stringify(err, undefined, 2));
+                    return next(err)
                 }
             });
-            // res.send(response);
         } else {
-            return res.status(400).send('Error: ' + JSON.stringify(err, undefined, 2));
+            return next(err)
         }
     });
 
@@ -44,7 +45,7 @@ function logout(req, res, next) {
         if (!err) {
             res.send("logout sucessfully!");
         } else {
-            return res.status(400).send('Error in logout: ' + JSON.stringify(err, undefined, 2));
+            return next(err)
         }
     });
 }
