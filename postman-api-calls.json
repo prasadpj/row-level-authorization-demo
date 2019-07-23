@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "e0a641ca-47ce-4327-9a31-3082212f924c",
+		"name": "Row level aurhorization assignment api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": [
+				{
+					"name": "admin login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"emailId\":\"admin@gmail.com\",\n\t\"password\":\"123\"\n}"
+						},
+						"url": {
+							"raw": "https://row-level-authorization-demo.herokuapp.com/login",
+							"protocol": "https",
+							"host": [
+								"row-level-authorization-demo",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"40-0CaYT/LqfYXJ9hJP7BiJ7WZA/sg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 23 Jul 2019 12:16:22 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sessionId\": \"2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5\"\n}"
+				}
+			]
+		},
+		{
+			"name": "user create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Mandar\",\n    \"password\": \"pass1\",\n    \"role\": \"moderator\",\n    \"emailId\": \"mandar@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "admin login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"emailId\":\"admin@gmail.com\",\n\t\"password\":\"123\"\n}"
+						},
+						"url": {
+							"raw": "https://row-level-authorization-demo.herokuapp.com/login",
+							"protocol": "https",
+							"host": [
+								"row-level-authorization-demo",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Cowboy"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, X-Requested-With, Content-Type, Accept"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"40-0CaYT/LqfYXJ9hJP7BiJ7WZA/sg\""
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 23 Jul 2019 12:16:22 GMT"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 vegur"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"sessionId\": \"2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5\"\n}"
+				}
+			]
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/logout",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Mandar\",\n    \"password\": \"pass1\",\n    \"role\": \"moderator\",\n    \"emailId\": \"mandar1@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"5d370677c0127900172cbbc2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single user by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"5d370677c0127900172cbbc2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all movies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get movie by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie/5d36bbc5fa57f1d01583b56c",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"movie",
+						"5d36bbc5fa57f1d01583b56c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete movie",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie/5d36bbc5fa57f1d01583b56c",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"movie",
+						"5d36bbc5fa57f1d01583b56c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"genre\": [\n        \"Adventure\",\n        \" Family\",\n        \" Fantasy\",\n        \" Musical\"\n    ],\n    \"isDeleted\": false,\n    \"isModeratorAccess\": false,\n    \"isViewerAccess\": false,\n    \"99popularity\": 83,\n    \"director\": \"Victor Fleming\",\n    \"imdb_score\": 8.3,\n    \"name\": \"The Wizard of Oz\"\n}"
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update movie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"genre\": [\n        \"Adventure\",\n        \" Family\",\n        \" Fantasy\",\n        \" Musical\"\n    ],\n    \"isDeleted\": true,\n    \"isModeratorAccess\": true,\n    \"isViewerAccess\": false,\n    \"99popularity\": 83,\n    \"director\": \"Victor Fleming\",\n    \"imdb_score\": 8.3,\n    \"name\": \"The Wizard of Oz\"\n}"
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie/5d37159a60e0270017a70fbe",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"movie",
+						"5d37159a60e0270017a70fbe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sessionid",
+						"value": "2dd20f9f4c453f831cdf70e9fe003e71c22c98340600fdb5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"user",
+						"5d370677c0127900172cbbc2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
