@@ -9,13 +9,29 @@
 			"name": "admin login",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\n\t\"emailId\":\"admin@gmail.com\",\n\t\"password\":\"123\"\n}"
 				},
 				"url": {
-					"raw": ""
+					"raw": "https://row-level-authorization-demo.herokuapp.com/login",
+					"protocol": "https",
+					"host": [
+						"row-level-authorization-demo",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"login"
+					]
 				}
 			},
 			"response": [
@@ -117,7 +133,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Mandar\",\n    \"password\": \"pass1\",\n    \"role\": \"moderator\",\n    \"emailId\": \"mandar@gmail.com\"\n}"
+					"raw": "{\n\t\"name\": \"Tushar Ghadge\",\n    \"password\": \"tg123\",\n\t\"role\": \"viewer\",\n    \"emailId\": \"tushar@gmail.com\"\n}"
 				},
 				"url": {
 					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user",
@@ -293,10 +309,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Mandar\",\n    \"password\": \"pass1\",\n    \"role\": \"moderator\",\n    \"emailId\": \"mandar1@gmail.com\"\n}"
+					"raw": "{\n\t\"name\": \"Mandar Palkar\",\n\t\"role\":\"moderator\"\n}"
 				},
 				"url": {
-					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d375658da33cc0017bc3ffa",
 					"protocol": "https",
 					"host": [
 						"row-level-authorization-demo",
@@ -306,7 +322,7 @@
 					"path": [
 						"api",
 						"user",
-						"5d370677c0127900172cbbc2"
+						"5d375658da33cc0017bc3ffa"
 					]
 				}
 			},
@@ -328,7 +344,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d376922b9db450017010397",
 					"protocol": "https",
 					"host": [
 						"row-level-authorization-demo",
@@ -338,7 +354,7 @@
 					"path": [
 						"api",
 						"user",
-						"5d370677c0127900172cbbc2"
+						"5d376922b9db450017010397"
 					]
 				}
 			},
@@ -495,7 +511,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"genre\": [\n        \"Adventure\",\n        \" Family\",\n        \" Fantasy\",\n        \" Musical\"\n    ],\n    \"isDeleted\": true,\n    \"isModeratorAccess\": true,\n    \"isViewerAccess\": false,\n    \"99popularity\": 83,\n    \"director\": \"Victor Fleming\",\n    \"imdb_score\": 8.3,\n    \"name\": \"The Wizard of Oz\"\n}"
+					"raw": "{\n\t\"genre\": [\n        \"Adventure\",\n        \" Family\",\n        \" Fantasy\"\n    ],\n    \"isDeleted\": true,\n    \"isModeratorAccess\": true,\n    \"isViewerAccess\": false,\n    \"99popularity\": 83,\n    \"director\": \"Victor Fleming\",\n    \"imdb_score\": 8.3,\n    \"name\": \"The Wizard of Oz\"\n}"
 				},
 				"url": {
 					"raw": "https://row-level-authorization-demo.herokuapp.com/api/movie/5d37159a60e0270017a70fbe",
@@ -530,7 +546,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d370677c0127900172cbbc2",
+					"raw": "https://row-level-authorization-demo.herokuapp.com/api/user/5d376ac742e8d40017d4b090",
 					"protocol": "https",
 					"host": [
 						"row-level-authorization-demo",
@@ -540,7 +556,7 @@
 					"path": [
 						"api",
 						"user",
-						"5d370677c0127900172cbbc2"
+						"5d376ac742e8d40017d4b090"
 					]
 				}
 			},
