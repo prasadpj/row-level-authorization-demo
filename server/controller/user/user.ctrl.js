@@ -1,9 +1,7 @@
 var ObjectId = require('mongoose').Types.ObjectId;
-
 var { User } = require('./../../schema/user.model');
-
 var crypto = require('crypto');
-
+const _ = require('underscore');
 var config = require('../../config/index.js');
 
 var EncryptionKey = config.EncryptionKey;
