@@ -21,7 +21,6 @@ const ingestMovies = () => {
         movieList = JSON.parse(data);
         // console.log('movieList ',movieList)
         async.forEach(movieList, (movie, callback) => {
-            console.log('1')
             let mongoObj = new Movie(movie);
             mongoObj.save((err) => {
                 if (err)
@@ -31,6 +30,8 @@ const ingestMovies = () => {
                 callback();
             })
         }, (err) => {
+            if(err)
+                console.error('err ',err)
             console.log("done");
             process.exit(0);
         })
