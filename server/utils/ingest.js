@@ -4,9 +4,9 @@ const fs = require('fs');
 const async = require('async');
 const config = require('./../config/index');
 
-mongoose.connect(config.host, (err) => {
+mongoose.connect(config.mongo.host, { useNewUrlParser: true }, (err) => {
     if (err) {
-        console.log("cannot connect to mongoose");
+        console.log("cannot connect to mongoose ",err);
         process.exit(0);
     }
     ingestMovies();
