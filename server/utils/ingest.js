@@ -1,0 +1,38 @@
+const mongoose = require('mongoose');
+const Movie = require('./../schema/movie.model').Movie;
+const fs = require('fs');
+const async = require('async');
+const config = require('./../config/index');
+
+mongoose.connect(config.host, (err) => {
+    if (err) {
+        console.log("cannot connect to mongoose");
+        process.exit(0);
+    }
+    ingestMovies();
+});
+
+const ingestMovies = () => {
+    fs.readFile('./imdb.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.log("Error while reading the file", err);
+            return;
+        }
+        movieList = JSON.parse(data);
+        // console.log('movieList ',movieList)
+        async.forEach(movieList, (movie, callback) => {
+            console.log('1')
+            let mongoObj = new Movie(movie);
+            mongoObj.save((err) => {
+                if (err)
+                    console.log("error");
+                else
+                    console.log("inserted");
+                callback();
+            })
+        }, (err) => {
+            console.log("done");
+            process.exit(0);
+        })
+    })
+}
