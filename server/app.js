@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
 });
 
 
-app.listen(config.port, () => console.log('server started at port:' + config.port));
+app.listen(process.env.PORT || 3001, () => console.log('server started at port:' + config.port));
 
 app.use('/api/*', middleware.sessionExist)
 app.get('/testing', (req, res, next) =>{
