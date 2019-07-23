@@ -43,7 +43,7 @@ function create(req, res, next) {
     var UserModel = new User({
         name: req.body.name,
         password: crypto.createCipher("aes-256-ctr", EncryptionKey).update(req.body.password, "utf-8", "hex"),
-        role: req.body.role,
+        role: req.body.role ? req.body.role.toLowerCase() : null,
         emailId: req.body.emailId,
     });
     UserModel.save((err, doc) => {
