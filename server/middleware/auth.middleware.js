@@ -33,7 +33,7 @@ function checkMovieAccessRestriction(req, res, next) {
     if (req.method == "POST") {
         if (userRole == "admin")
             return next()
-        return res.status(400).send(`Unauthorized user!`);
+        return res.status(400).send(`Access denied!`);
     }
     if (req.method == "PUT" || req.method == "DELETE") {
         if (userRole == "admin")
@@ -44,17 +44,17 @@ function checkMovieAccessRestriction(req, res, next) {
                     req.body = filterReqBody(req.body)
                     return next()
                 }
-                return res.status(400).send(`Unauthorized user!`);
+                return res.status(400).send(`Access denied!`);
             })
         } else {
-            return res.status(400).send(`Unauthorized user!`);
+            return res.status(400).send(`Access denied!`);
         }
     }
     if (req.method == "GET") {
         if (userRole == "admin")
             return next()
         if (constants.roles.indexOf(userRole) == -1) {
-            return res.status(400).send(`Unauthorized user!`);
+            return res.status(400).send(`Access denied!`);
         }
         if (req.params.id) {
             let filter = userRole == "admin" ? {} :
@@ -65,7 +65,7 @@ function checkMovieAccessRestriction(req, res, next) {
                 if (docs.length > 0) {
                     return next()
                 }
-                return res.status(400).send(`Unauthorized user!`);
+                return res.status(400).send(`Access denied!`);
             })
         } else {
             return next()
